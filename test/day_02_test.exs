@@ -2,8 +2,11 @@ defmodule Day02Test do
   use ExUnit.Case
 
   test "find_all_invalid_ids" do
-    ranges = Day02.read_ranges("inputs/day02_sample.txt")
-    assert Day02.find_all_invalid_ids(ranges) |> Enum.sum() == 1_227_775_554
+    assert "inputs/day02_sample.txt"
+           |> Day02.read_ranges()
+           |> Day02.find_all_invalid_ids()
+           |> Enum.sum() ==
+             1_227_775_554
   end
 
   test "has_repeated_sequences?" do
@@ -15,7 +18,10 @@ defmodule Day02Test do
   end
 
   test "find_all_ids_with_repeated_sequences" do
-    ranges = Day02.read_ranges("inputs/day02_sample.txt")
-    assert Day02.find_all_ids_with_repeated_sequences(ranges) |> Enum.sum() == 4_174_379_265
+    assert "inputs/day02_sample.txt"
+           |> Day02.read_ranges()
+           |> Day02.find_all_ids_with_repeated_sequences()
+           |> Enum.sum() ==
+             4_174_379_265
   end
 end
