@@ -83,16 +83,13 @@ defmodule Day02 do
   end
 
   def part1 do
-    ranges = read_ranges("inputs/day02.txt")
-
-    find_all_invalid_ids(ranges)
+    read_ranges("inputs/day02.txt")
+    |> find_all_invalid_ids()
     |> Enum.sum()
   end
 
   def part1_alternative do
-    ranges = read_ranges("inputs/day02.txt")
-
-    ranges
+    read_ranges("inputs/day02.txt")
     |> Enum.flat_map(fn {s, e} ->
       s..e
       |> Stream.filter(&has_twice_repeated_sequence?/1)
@@ -106,9 +103,8 @@ defmodule Day02 do
   end
 
   def part2 do
-    ranges = read_ranges("inputs/day02.txt")
-
-    find_all_ids_with_repeated_sequences(ranges)
+    read_ranges("inputs/day02.txt")
+    |> find_all_ids_with_repeated_sequences()
     |> Enum.sum()
   end
 end
