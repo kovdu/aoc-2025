@@ -12,15 +12,15 @@ defmodule Day03Test do
            |> Enum.sum() == 357
   end
 
-  test "push" do
-    assert Day03.push(1, []) == []
-    assert Day03.push(1, [2]) == [2]
-    assert Day03.push(2, [1]) == [2]
-    assert Day03.push(1, [2, 3]) == [2, 3]
-    assert Day03.push(3, [1, 2]) == [3, 2]
-    assert Day03.push(5, [2, 4, 2, 1]) == [5, 4, 2, 1]
-    assert Day03.push(5, [2, 4, 2, 1]) == [5, 4, 2, 1]
-    assert Day03.push(6, [5, 4, 2, 1]) == [6, 5, 4, 2]
+  test "maximize_joltage" do
+    assert Day03.maximize_joltage(1, []) == []
+    assert Day03.maximize_joltage(1, [2]) == [2]
+    assert Day03.maximize_joltage(2, [1]) == [2]
+    assert Day03.maximize_joltage(1, [2, 3]) == [2, 3]
+    assert Day03.maximize_joltage(3, [1, 2]) == [3, 2]
+    assert Day03.maximize_joltage(5, [2, 4, 2, 1]) == [5, 4, 2, 1]
+    assert Day03.maximize_joltage(5, [2, 4, 2, 1]) == [5, 4, 2, 1]
+    assert Day03.maximize_joltage(6, [5, 4, 2, 1]) == [6, 5, 4, 2]
   end
 
   test "calculate_max_joltage_for_size" do

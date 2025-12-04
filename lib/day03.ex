@@ -39,27 +39,17 @@ defmodule Day03 do
   end
 
   # Push number on list and maximize value
-  def push(n, l) do
+  def maximize_joltage(n, l) do
     case l do
-      [a | rest] -> if n >= a, do: [n | push(a, rest)], else: l
+      [a | rest] -> if n >= a, do: [n | maximize_joltage(a, rest)], else: l
       [] -> []
-    end
-  end
-
-  # Should be one method actually ...
-  def maximize_joltage(on, batteries) do
-    case batteries do
-      [b | rest] ->
-        maximize_joltage(push(b, on), rest)
-
-      [] ->
-        on
     end
   end
 
   def calculate_max_joltage_for_size(batteries, size) do
     {remaining, on} = Enum.split(batteries, length(batteries) - size)
-    maximize_joltage(on, remaining |> Enum.reverse()) |> Integer.undigits()
+    Enum.reduce(remaining |> Enum.reverse(), on, fn x, acc -> maximize_joltage(x, acc) end)
+    |> Integer.undigits()
   end
 
   def part1 do
