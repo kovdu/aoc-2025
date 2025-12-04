@@ -50,13 +50,7 @@ defmodule Day03 do
   def maximize_joltage(on, batteries) do
     case batteries do
       [b | rest] ->
-        if b >= List.last(on) do
-          # should remove reverse
-          new_on = push(b, on |> Enum.reverse()) |> Enum.reverse()
-          maximize_joltage(new_on, rest)
-        else
-          maximize_joltage(on, rest)
-        end
+        maximize_joltage(push(b, on), rest)
 
       [] ->
         on
@@ -64,10 +58,8 @@ defmodule Day03 do
   end
 
   def calculate_max_joltage_for_size(batteries, size) do
-    rev = batteries |> Enum.reverse()
-    {on, remaining} = Enum.split(rev, size)
-
-    maximize_joltage(on, remaining) |> Enum.reverse() |> Integer.undigits()
+    {remaining, on} = Enum.split(batteries, length(batteries) - size)
+    maximize_joltage(on, remaining |> Enum.reverse()) |> Integer.undigits()
   end
 
   def part1 do
