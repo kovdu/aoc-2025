@@ -1,4 +1,8 @@
 defmodule Day04 do
+  defp neighbors({x, y}) do
+    for i <- -1..1, j <- -1..1, {i, j} != {0, 0}, do: {x + i, y + j}
+  end
+
   def read_grid(file) do
     values =
       file
@@ -16,14 +20,13 @@ defmodule Day04 do
   def count_rolls_of_paper(grid) do
     grid
     |> Enum.filter(fn {_pos, v} -> v == "@" end)
-    |> Enum.map(fn {{x, y}, _v} ->
+    |> Enum.map(fn {pos, _v} ->
       count =
-        for i <- -1..1, j <- -1..1, i != 0 or j != 0 do
-          Map.get(grid, {x + i, y + j})
-        end
-        |> Enum.count(&(&1 == "@"))
+        pos
+        |> neighbors()
+        |> Enum.count(&(Map.get(grid, &1) == "@"))
 
-      {{x, y}, count}
+      {pos, count}
     end)
     |> Map.new()
   end
