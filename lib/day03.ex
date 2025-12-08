@@ -48,6 +48,7 @@ defmodule Day03 do
 
   def calculate_max_joltage_for_size(batteries, size) do
     {remaining, on} = Enum.split(batteries, length(batteries) - size)
+
     Enum.reduce(remaining |> Enum.reverse(), on, fn x, acc -> maximize_joltage(x, acc) end)
     |> Integer.undigits()
   end

@@ -1,20 +1,23 @@
 defmodule Day05 do
   def read_ingredients(file) do
-    f = file
-    |> File.stream!()
-    |> Stream.map(&String.trim/1)
+    f =
+      file
+      |> File.stream!()
+      |> Stream.map(&String.trim/1)
 
     range =
-      f |> Stream.take_while(fn s -> s != "" end)
-        |> Enum.to_list()
-        |> Enum.map(fn s -> String.split(s, "-") end)
-        |> Enum.map(fn [s, e] -> {String.to_integer(s), String.to_integer(e)} end)
+      f
+      |> Stream.take_while(fn s -> s != "" end)
+      |> Enum.to_list()
+      |> Enum.map(fn s -> String.split(s, "-") end)
+      |> Enum.map(fn [s, e] -> {String.to_integer(s), String.to_integer(e)} end)
 
     ingredients =
-      f |> Stream.drop_while(fn s -> s != "" end)
-        |> Stream.drop(1)
-        |> Enum.to_list()
-        |> Enum.map(&String.to_integer/1)
+      f
+      |> Stream.drop_while(fn s -> s != "" end)
+      |> Stream.drop(1)
+      |> Enum.to_list()
+      |> Enum.map(&String.to_integer/1)
 
     {range, ingredients}
   end
@@ -27,8 +30,12 @@ defmodule Day05 do
 
   def combine_ranges(remaining, processed) do
     case remaining do
-      [] -> processed
-      [a] -> processed ++ [a]
+      [] ->
+        processed
+
+      [a] ->
+        processed ++ [a]
+
       [{s1, e1} = a, {s2, e2} | t] ->
         if e1 < s2 do
           combine_ranges([{s2, e2} | t], processed ++ [a])

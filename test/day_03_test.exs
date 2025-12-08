@@ -41,7 +41,9 @@ defmodule Day03Test do
 
     assert 53421 |> Integer.digits() |> Day03.calculate_max_joltage_for_size(4) == 5421
 
-    assert 7_152_242_222_112_122_421 |> Integer.digits() |> Day03.calculate_max_joltage_for_size(12) ==
+    assert 7_152_242_222_112_122_421
+           |> Integer.digits()
+           |> Day03.calculate_max_joltage_for_size(12) ==
              754_222_222_421
 
     assert "inputs/day03_sample.txt"
